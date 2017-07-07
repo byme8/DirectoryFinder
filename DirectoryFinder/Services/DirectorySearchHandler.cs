@@ -9,12 +9,12 @@ namespace DirectoryFinder.Services
 {
     public class DirectorySearchHandler
     {
-        public AutoResetEvent SearchFinishingEvent;
         private ISnackbarMessageQueue messageQueue;
+        public ManualResetEvent NewSearchEvent = new ManualResetEvent(false);
+        public ManualResetEvent SearchFinishedEvent = new ManualResetEvent(false);
 
         public DirectorySearchHandler(ISnackbarMessageQueue messageQueue)
         {
-            this.SearchFinishingEvent = new AutoResetEvent(false);
             this.messageQueue = messageQueue;
         }
 
@@ -28,9 +28,13 @@ namespace DirectoryFinder.Services
         {
             new Thread(() =>
             {
-                this.SearchFinishingEvent.Reset();
+                this.SearchFinishedEvent.Reset();
+                this.NewSearchEvent.Set();
+
                 this.Root = this.SearchDirectoryInternal(new DirectoryInfo(path), token);
-                this.SearchFinishingEvent.Set();
+
+                this.NewSearchEvent.Reset();
+                this.SearchFinishedEvent.Set();
             }).Start();
         }
 

@@ -93,7 +93,8 @@
     <Compile Include="Data\Item.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="Services\DirectorySearchHandler.cs" />
-    <Compile Include="Services\TreeHandler.cs" />
+    <Compile Include="Services\SeralizationHandler.cs" />
+    <Compile Include="Services\UIHandler.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TreeViewModel.cs" />

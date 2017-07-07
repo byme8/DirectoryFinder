@@ -4,12 +4,12 @@ using DirectoryFinder.ViewModels;
 
 namespace DirectoryFinder.Services
 {
-    public class TreeHandler
+    public class UIHandler
     {
         private TreeViewModel treeViewModel;
         private DirectorySearchHandler searchHandler;
 
-        public TreeHandler(TreeViewModel treeViewModel, DirectorySearchHandler searchHandler)
+        public UIHandler(TreeViewModel treeViewModel, DirectorySearchHandler searchHandler)
         {
             this.treeViewModel = treeViewModel;
             this.searchHandler = searchHandler;
@@ -17,18 +17,22 @@ namespace DirectoryFinder.Services
 
         public void StartHandeling(CancellationToken token)
         {
-            new Thread(() =>
+            var thread = new Thread(() =>
             {
-                while (!token.IsCancellationRequested)
+                while (true)
                 {
-                    this.searchHandler.SearchFinishingEvent.WaitOne();
+                    this.searchHandler.NewSearchEvent.WaitOne();
+                    this.searchHandler.SearchFinishedEvent.WaitOne();
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         this.treeViewModel.Tree.Clear();
                         this.treeViewModel.Tree.Add(new ItemViewModel(this.searchHandler.Root));
                     });
                 }
-            }).Start();
+            });
+            thread.Start();
+            token.Register(() => thread.Abort());
         }
     }
 }

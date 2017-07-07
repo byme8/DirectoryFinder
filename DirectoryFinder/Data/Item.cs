@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 namespace DirectoryFinder.Data
 {
+    [Serializable]
     public abstract class Item
     {
+        [XmlIgnore]
         public Directory Parent
         {
             get;

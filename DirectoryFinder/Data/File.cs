@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace DirectoryFinder.Data
 {
+    [Serializable]
     public class File : Item
     {
     }

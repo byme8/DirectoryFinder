@@ -10,10 +10,20 @@ namespace DirectoryFinder
     /// </summary>
     public partial class App : Application
     {
+        private CancellationTokenSource applicationFinished;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            IoC.Container.Resolve<TreeHandler>().StartHandeling(CancellationToken.None);
+            this.applicationFinished = new CancellationTokenSource();
+            IoC.Container.Resolve<UIHandler>().StartHandeling(applicationFinished.Token);
+            IoC.Container.Resolve<SeralizationHandler>().StartHandeling(applicationFinished.Token);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            this.applicationFinished.Cancel();
         }
     }
 }
