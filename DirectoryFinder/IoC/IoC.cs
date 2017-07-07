@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DirectoryFinder.Services;
+﻿using DirectoryFinder.Services;
 using DirectoryFinder.ViewModels;
 using DryIoc;
 using MaterialDesignThemes.Wpf;

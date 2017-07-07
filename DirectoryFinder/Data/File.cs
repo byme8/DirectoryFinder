@@ -1,11 +1,9 @@
 ﻿using System.IO;
-using HumanBytes;
 
 namespace DirectoryFinder.Data
 {
     public class File : Item
     {
-
     }
 
     public static class FileExtensions

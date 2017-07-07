@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DirectoryFinder.Core.ViewModels;
 using DirectoryFinder.Data;
 using HumanBytes;
@@ -14,7 +11,7 @@ namespace DirectoryFinder.ViewModels
         public ItemViewModel(Item value)
             : base(value)
         {
-            if (this.Value.Items == null )
+            if (this.Value.Items == null)
                 return;
 
             this.Items = this.Value.Items.Select(o => new ItemViewModel(o)).ToArray();

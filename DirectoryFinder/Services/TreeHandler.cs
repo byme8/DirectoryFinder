@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
-using System.Windows.Threading;
 using DirectoryFinder.ViewModels;
 
 namespace DirectoryFinder.Services
@@ -28,7 +22,8 @@ namespace DirectoryFinder.Services
                 while (!token.IsCancellationRequested)
                 {
                     this.searchHandler.SearchFinishingEvent.WaitOne();
-                    Application.Current.Dispatcher.Invoke(() => {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
                         this.treeViewModel.Tree.Clear();
                         this.treeViewModel.Tree.Add(new ItemViewModel(this.searchHandler.Root));
                     });

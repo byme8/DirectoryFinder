@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 using DirectoryFinder.Services;
 using DryIoc;
-using MaterialDesignThemes.Wpf;
 
 namespace DirectoryFinder
 {
