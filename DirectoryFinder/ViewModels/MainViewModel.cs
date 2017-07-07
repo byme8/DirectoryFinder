@@ -14,7 +14,7 @@ namespace DirectoryFinder.ViewModels
 {
     public class MainViewModel : ViewModel
     {
-        public MainViewModel(DirectoryService finder)
+        public MainViewModel(DirectorySearchHandler finder)
         {
             this.StartSearch = ReactiveCommand.Create(() =>
             {
@@ -23,7 +23,7 @@ namespace DirectoryFinder.ViewModels
                     if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                     {
                         this.CancellationTokenSource = new CancellationTokenSource();
-                        finder.SearchDirectory(folderBrowserDialog.SelectedPath, this.CancellationTokenSource.Token);
+                        finder.StartHandler(folderBrowserDialog.SelectedPath, this.CancellationTokenSource.Token);
                     }
                 }
             });

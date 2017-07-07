@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DirectoryFinder.Services;
 using DirectoryFinder.ViewModels;
 using DryIoc;
+using MaterialDesignThemes.Wpf;
 
 namespace DirectoryFinder
 {
@@ -15,9 +17,11 @@ namespace DirectoryFinder
         static IoC()
         {
             Container = new Container();
-            Container.Register<Services.DirectoryService>(Reuse.Singleton);
+            Container.Register<DirectorySearchHandler>(Reuse.Singleton);
+            Container.Register<TreeHandler>(Reuse.Singleton);
+            Container.Register<ISnackbarMessageQueue, SnackbarMessageQueue>(Reuse.Singleton, Made.Of(() => new SnackbarMessageQueue()));
+            Container.Register<TreeViewModel>(Reuse.Singleton);
             Container.Register<MainViewModel>();
-            Container.Register<TreeViewModel>();
         }
     }
 }

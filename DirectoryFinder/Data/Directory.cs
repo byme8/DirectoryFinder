@@ -37,6 +37,17 @@ namespace DirectoryFinder.Data
                 return this.SubDirectories.Cast<Item>().Union(this.Files).ToArray();
             }
         }
+    }
 
+    public static class DirectoryExtensions
+    {
+        public static Directory ToDirectory(this DirectoryInfo info, Directory parent = null)
+        {
+            return new Directory
+            {
+                Name = info.FullName,
+                Parent = parent
+            };
+        }
     }
 }

@@ -13,22 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DirectoryFinder.ViewModels;
-using DirectoryFinder.Views;
 using DryIoc;
-using MaterialDesignThemes.Wpf;
 
-namespace DirectoryFinder
+namespace DirectoryFinder.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainView : UserControl
     {
-        public MainWindow()
+        public MainView()
         {
             InitializeComponent();
-            this.Root.Children.Add(new MainView());
-            this.Root.Children.Add(new Snackbar { MessageQueue = IoC.Container.Resolve<ISnackbarMessageQueue>() as SnackbarMessageQueue });
+            this.DataContext = IoC.Container.Resolve<MainViewModel>();
         }
     }
 }
