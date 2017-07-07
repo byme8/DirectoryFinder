@@ -23,7 +23,13 @@ namespace DirectoryFinder.ViewModels
                 }
             });
 
-            this.StopSearch = ReactiveCommand.Create(() => this.CancellationTokenSource.Cancel());
+            this.StopSearch = ReactiveCommand.Create(() =>
+            {
+                if (this.CancellationTokenSource == null || this.CancellationTokenSource.IsCancellationRequested)
+                    return;
+                
+                this.CancellationTokenSource.Cancel();
+            });
         }
 
         public ReactiveCommand<Unit, Unit> StartSearch
