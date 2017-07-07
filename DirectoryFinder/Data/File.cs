@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using EnumsNET;
 
 namespace DirectoryFinder.Data
 {
@@ -12,12 +14,22 @@ namespace DirectoryFinder.Data
     {
         public static File ToFile(this FileInfo info, Directory parent)
         {
-            return new File
+            var file = new File
             {
                 Name = info.FullName,
-                Size = info.Length,
-                Parent = parent
+                Parent = parent,
+                CreationDate = info.CreationTime,
+                LastAccessDate = info.LastAccessTime,
+                ModificationDate = info.LastWriteTime,
+                Size = info.Length
             };
+
+            var access = info.GetAccessControl();
+
+            file.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
+            file.Attributes = Enums.GetMembers<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Name).ToArray();
+
+            return file;
         }
     }
 }

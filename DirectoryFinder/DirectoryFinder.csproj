@@ -37,6 +37,9 @@
     <Reference Include="DryIoc, Version=2.11.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DryIoc.dll.2.11.4\lib\net45\DryIoc.dll</HintPath>
     </Reference>
+    <Reference Include="Enums.NET, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.2.2.0\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
     <Reference Include="HumanBytes, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HumanBytes.1.0.1\lib\HumanBytes.dll</HintPath>
     </Reference>

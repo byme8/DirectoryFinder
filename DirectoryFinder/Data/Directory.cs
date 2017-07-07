@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.AccessControl;
+using EnumsNET;
 
 namespace DirectoryFinder.Data
 {
@@ -52,11 +54,21 @@ namespace DirectoryFinder.Data
     {
         public static Directory ToDirectory(this DirectoryInfo info, Directory parent = null)
         {
-            return new Directory
+            var directory = new Directory
             {
                 Name = info.FullName,
-                Parent = parent
+                Parent = parent,
+                CreationDate = info.CreationTime,
+                LastAccessDate = info.LastAccessTime,
+                ModificationDate = info.LastWriteTime
             };
+
+            var access = info.GetAccessControl();
+
+            directory.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
+            directory.Attributes = Enums.GetMembers<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Name).ToArray();
+
+            return directory;
         }
     }
 }

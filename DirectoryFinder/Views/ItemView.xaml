@@ -35,7 +35,7 @@
         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Value.CreationDate}"/>
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Value.ModificationDate}"/>
         <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Value.LastAccessDate}"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Value.Attribues}"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Attributes}"/>
         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ReadableSize}"/>
         <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding Value.Owner}"/>
         <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Value.UserAccess}"/>

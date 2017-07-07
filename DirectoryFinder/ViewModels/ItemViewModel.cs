@@ -11,23 +11,30 @@ namespace DirectoryFinder.ViewModels
         public ItemViewModel(Item value)
             : base(value)
         {
-            if (this.Value.Items == null)
-                return;
+            if (this.Value.Items != null)
+            {
+                this.Items = this.Value.Items.Select(o => new ItemViewModel(o)).ToArray();
+            }
 
-            this.Items = this.Value.Items.Select(o => new ItemViewModel(o)).ToArray();
+            this.ReadableSize = this.Value.Size.Bytes().ToString();
+            this.Attributes = string.Join(", ", this.Value.Attributes);
         }
 
         public string ReadableSize
         {
-            get
-            {
-                return this.Value.Size.Bytes().ToString();
-            }
+            get;
+            private set;
         }
 
         public IEnumerable<ItemViewModel> Items
         {
             get;
+        }
+
+        public string Attributes
+        {
+            get;
+            private set;
         }
     }
 }
