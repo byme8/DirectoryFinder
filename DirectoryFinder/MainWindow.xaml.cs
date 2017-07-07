@@ -14,7 +14,6 @@ namespace DirectoryFinder
         {
             InitializeComponent();
             this.Root.Children.Add(new MainView());
-            this.Root.Children.Add(new Snackbar { MessageQueue = IoC.Container.Resolve<ISnackbarMessageQueue>() as SnackbarMessageQueue });
         }
     }
 }

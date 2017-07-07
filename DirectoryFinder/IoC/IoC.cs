@@ -15,9 +15,9 @@ namespace DirectoryFinder
             Container.Register<DirectorySearchHandler>(Reuse.Singleton);
             Container.Register<UIHandler>(Reuse.Singleton);
             Container.Register<SeralizationHandler>(Reuse.Singleton);
-            Container.Register<ISnackbarMessageQueue, SnackbarMessageQueue>(Reuse.Singleton, Made.Of(() => new SnackbarMessageQueue()));
             Container.Register<TreeViewModel>(Reuse.Singleton);
             Container.Register<MainViewModel>();
+            Container.Register<ErrorsViewModel>();
         }
     }
 }

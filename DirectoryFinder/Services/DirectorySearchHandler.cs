@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reactive.Subjects;
 using System.Threading;
 using DirectoryFinder.Data;
 using MaterialDesignThemes.Wpf;
@@ -9,19 +10,39 @@ namespace DirectoryFinder.Services
 {
     public class DirectorySearchHandler
     {
-        private ISnackbarMessageQueue messageQueue;
-        public ManualResetEvent NewSearchEvent = new ManualResetEvent(false);
-        public ManualResetEvent SearchFinishedEvent = new ManualResetEvent(false);
+        private Subject<string> error;
 
-        public DirectorySearchHandler(ISnackbarMessageQueue messageQueue)
+        public IObservable<string> Error
         {
-            this.messageQueue = messageQueue;
+            get
+            {
+                return this.error;
+            }
+        }
+
+        public ManualResetEvent NewSearchEvent
+        {
+            get;
+            private set;
         }
 
         public Data.Directory Root
         {
             get;
             private set;
+        }
+
+        public ManualResetEvent SearchFinishedEvent
+        {
+            get;
+            private set;
+        }
+
+        public DirectorySearchHandler()
+        {
+            this.NewSearchEvent = new ManualResetEvent(false);
+            this.SearchFinishedEvent = new ManualResetEvent(false);
+            this.error = new Subject<string>();
         }
 
         public void StartHandler(string path, CancellationToken token)
@@ -54,7 +75,7 @@ namespace DirectoryFinder.Services
             }
             catch (Exception ex)
             {
-                this.messageQueue.Enqueue(ex.Message);
+                this.error.OnNext(ex.Message);
             }
 
             try
@@ -69,7 +90,7 @@ namespace DirectoryFinder.Services
             }
             catch (Exception ex)
             {
-                this.messageQueue.Enqueue(ex.Message);
+                this.error.OnNext(ex.Message);
             }
 
             directory.Size = directory.Items.Sum(o => o.Size);

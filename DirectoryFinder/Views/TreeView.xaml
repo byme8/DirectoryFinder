@@ -12,7 +12,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="TreeView_SelectedItemChanged" HorizontalContentAlignment="Stretch">
+        <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" HorizontalContentAlignment="Stretch">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type data:Item}" ItemsSource="{Binding Items}">
                     <Expander Header="{Binding Value.Name}" HorizontalAlignment="Stretch">
