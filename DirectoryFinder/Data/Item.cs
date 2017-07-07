@@ -8,6 +8,12 @@ namespace DirectoryFinder.Data
 {
     public abstract class Item
     {
+        public Directory Parent
+        {
+            get;
+            set;
+        }
+
         public string Name
         {
             get;
@@ -54,6 +60,11 @@ namespace DirectoryFinder.Data
         {
             get;
             set;
+        }
+
+        public virtual Item[] Items
+        {
+            get;
         }
     }
 }

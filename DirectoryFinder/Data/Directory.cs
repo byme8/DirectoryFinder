@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +9,34 @@ namespace DirectoryFinder.Data
 {
     public class Directory : Item
     {
-        public Directory[] SubDirectories
+        public Directory()
+        {
+            this.Files = new List<File>();
+            this.SubDirectories = new List<Directory>();
+        }
+
+        public List<Directory> SubDirectories
         {
             get;
             set;
         }
 
-        public File[] Files
+        public List<File> Files
         {
             get;
             set;
         }
+
+        public override Item[] Items
+        {
+            get
+            {
+                if (this.SubDirectories == null)
+                    return this.Files.ToArray();
+
+                return this.SubDirectories.Cast<Item>().Union(this.Files).ToArray();
+            }
+        }
+
     }
 }
