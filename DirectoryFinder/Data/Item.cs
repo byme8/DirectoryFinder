@@ -25,13 +25,13 @@ namespace DirectoryFinder.Data
             set;
         }
 
-        public DateTime Edited
+        public DateTime ModificationDate
         {
             get;
             set;
         }
 
-        public DateTime LastAccess
+        public DateTime LastAccessDate
         {
             get;
             set;

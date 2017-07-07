@@ -12,7 +12,18 @@ namespace DirectoryFinder.Views
         public TreeView()
         {
             InitializeComponent();
-            this.DataContext = IoC.Container.Resolve<TreeViewModel>();
+            this.DataContext = this.TreeViewModel = IoC.Container.Resolve<TreeViewModel>(); ;
+        }
+
+        public TreeViewModel TreeViewModel
+        {
+            get;
+            private set;
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.TreeViewModel.SelectedItem = e.NewValue as ItemViewModel;
         }
     }
 }

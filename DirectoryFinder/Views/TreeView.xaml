@@ -4,16 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:data="clr-namespace:DirectoryFinder.Data"
+             xmlns:views="clr-namespace:DirectoryFinder.Views"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TreeView ItemsSource="{Binding Tree}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="TreeView_SelectedItemChanged" HorizontalContentAlignment="Stretch">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type data:Item}" ItemsSource="{Binding Items}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="5" Text="{Binding Value.Name}" />
-                        <TextBlock Margin="5" Text="{Binding ReadableSize}" />
-                    </StackPanel>
+                    <Expander Header="{Binding Value.Name}" HorizontalAlignment="Stretch">
+                        <views:ItemView/>
+                    </Expander>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
