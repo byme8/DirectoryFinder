@@ -5,12 +5,14 @@ using System.Reactive.Subjects;
 using System.Threading;
 using DirectoryFinder.Data;
 using MaterialDesignThemes.Wpf;
+using DirectoryFinder.Views.ProgresShower;
 
 namespace DirectoryFinder.Services
 {
     public class DirectorySearchHandler
     {
         private Subject<string> error;
+        private ProgresService progressService;
 
         public IObservable<string> Error
         {
@@ -38,21 +40,25 @@ namespace DirectoryFinder.Services
             private set;
         }
 
-        public DirectorySearchHandler()
+        public DirectorySearchHandler(ProgresService progressService)
         {
             this.NewSearchEvent = new ManualResetEvent(false);
             this.SearchFinishedEvent = new ManualResetEvent(false);
             this.error = new Subject<string>();
+            this.progressService = progressService;
         }
 
         public void StartHandler(string path, CancellationToken token)
         {
             new Thread(() =>
             {
+                var taskName = string.Format("Searching at {0} directory...", path);
                 this.SearchFinishedEvent.Reset();
                 this.NewSearchEvent.Set();
 
+                this.progressService.Start(taskName);
                 this.Root = this.SearchDirectoryInternal(new DirectoryInfo(path), token);
+                this.progressService.Stop(taskName);
 
                 this.NewSearchEvent.Reset();
                 this.SearchFinishedEvent.Set();
