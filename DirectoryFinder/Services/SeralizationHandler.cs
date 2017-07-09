@@ -35,7 +35,7 @@ namespace DirectoryFinder.Services
                     {
                         Title = "Save results",
                         AddExtension = true,
-                        DefaultExt = "xml"
+                        Filter ="XML|*.xml"
                     };
 
                     var value = saveFileDialog.ShowDialog();
