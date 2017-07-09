@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using EnumUtilities;
+using System.Security.AccessControl;
 
 namespace DirectoryFinder.Data
 {
@@ -12,6 +13,16 @@ namespace DirectoryFinder.Data
 
     public static class FileExtensions
     {
+        /// <summary>
+        /// Creates the <see cref="File"/> base on <see cref="FileInfo"/>.
+        /// </summary>
+        /// <param name="info">The file info.</param>
+        /// <param name="parent">The parent</param>
+        /// <returns>The result file.</returns>
+        /// <remarks>
+        /// It can't be merged with <see cref="DirectoryExtensions.ToDirectory"/>, 
+        /// because <see cref="DirectoryInfo"/> and <see cref="FileInfo"/> have different hierarchy.
+        /// </remarks>
         public static File ToFile(this FileInfo info, Directory parent)
         {
             var file = new File
@@ -28,7 +39,18 @@ namespace DirectoryFinder.Data
 
             file.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
             file.Attributes = EnumUtil.GetNameValue<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Key).ToArray();
+            file.UserRights = new[] { "N/A" };
 
+            var currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+
+            foreach (FileSystemAccessRule rule in access.GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount)))
+            {
+                if (rule.IdentityReference.Value == currentUser)
+                {
+                    file.UserRights = EnumUtil.GetNameValue<FileSystemRights>().Where(o => (rule.FileSystemRights & o.Value) > 0).Select(o => o.Key).ToArray();
+                    break;
+                }
+            }
             return file;
         }
     }

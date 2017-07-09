@@ -18,6 +18,7 @@ namespace DirectoryFinder.ViewModels
 
             this.ReadableSize = this.Value.Size.Bytes().ToString();
             this.Attributes = string.Join(", ", this.Value.Attributes);
+            this.Rights = string.Join("\n", this.Value.UserRights);
         }
 
         public string ReadableSize
@@ -33,6 +34,12 @@ namespace DirectoryFinder.ViewModels
         }
 
         public string Attributes
+        {
+            get;
+            private set;
+        }
+
+        public string Rights
         {
             get;
             private set;

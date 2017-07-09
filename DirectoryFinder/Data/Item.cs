@@ -55,7 +55,7 @@ namespace DirectoryFinder.Data
             set;
         }
 
-        public string[] UserAccess
+        public string[] UserRights
         {
             get;
             set;

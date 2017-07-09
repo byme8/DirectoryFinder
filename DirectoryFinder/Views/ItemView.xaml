@@ -29,7 +29,7 @@
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Attribues"/>
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Size"/>
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Owner"/>
-        <TextBlock Grid.Row="7" Grid.Column="0" Text="Rights"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Current Rights"/>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Value.Name}"/>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Value.CreationDate}"/>
@@ -38,6 +38,6 @@
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Attributes}"/>
         <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ReadableSize}"/>
         <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding Value.Owner}"/>
-        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Value.UserAccess}"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Rights}"/>
     </Grid>
 </UserControl>
