@@ -18,5 +18,17 @@ namespace DirectoryFinder.ViewModels
             get;
             private set;
         }
+
+        public ItemViewModel SelectedItem
+        {
+            get
+            {
+                return this.selectedItem;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref this.selectedItem, value);
+            }
+        }
     }
 }

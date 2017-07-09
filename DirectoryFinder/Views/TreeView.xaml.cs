@@ -20,5 +20,10 @@ namespace DirectoryFinder.Views
             get;
             private set;
         }
+
+        private void TreeView_SelectedItemChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.TreeViewModel.SelectedItem = e.NewValue as ItemViewModel;
+        }
     }
 }

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:data="clr-namespace:DirectoryFinder.Data"
              xmlns:views="clr-namespace:DirectoryFinder.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -12,14 +13,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" HorizontalContentAlignment="Stretch">
+        <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type data:Item}" ItemsSource="{Binding Items}">
-                    <Expander Header="{Binding Value.Name}" HorizontalAlignment="Stretch">
-                        <views:ItemView/>
-                    </Expander>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="5" Text="{Binding Value.Name}"/>
+                        <TextBlock Margin="5" Text="{Binding ReadableSize}"/>
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Selected  item" FontSize="24" />
+            <views:ItemView DataContext="{Binding SelectedItem}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
