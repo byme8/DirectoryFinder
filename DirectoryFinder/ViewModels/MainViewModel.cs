@@ -35,6 +35,7 @@ namespace DirectoryFinder.ViewModels
         public ReactiveCommand<Unit, Unit> StartSearch
         {
             get;
+            private set;
         }
 
         private CancellationTokenSource CancellationTokenSource
@@ -46,6 +47,7 @@ namespace DirectoryFinder.ViewModels
         public ReactiveCommand<Unit, Unit> StopSearch
         {
             get;
+            private set;
         }
     }
 }

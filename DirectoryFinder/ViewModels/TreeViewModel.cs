@@ -16,6 +16,7 @@ namespace DirectoryFinder.ViewModels
         public ObservableCollection<ItemViewModel> Tree
         {
             get;
+            private set;
         }
     }
 }

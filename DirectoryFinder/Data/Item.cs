@@ -61,9 +61,11 @@ namespace DirectoryFinder.Data
             set;
         }
 
+        [XmlIgnore]
         public virtual Item[] Items
         {
             get;
+            private set;
         }
     }
 }

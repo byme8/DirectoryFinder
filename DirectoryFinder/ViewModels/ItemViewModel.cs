@@ -29,6 +29,7 @@ namespace DirectoryFinder.ViewModels
         public IEnumerable<ItemViewModel> Items
         {
             get;
+            private set;
         }
 
         public string Attributes

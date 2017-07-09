@@ -1,10 +1,10 @@
-﻿using System;
+﻿using EnumUtilities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.AccessControl;
-using EnumsNET;
 
 namespace DirectoryFinder.Data
 {
@@ -66,7 +66,7 @@ namespace DirectoryFinder.Data
             var access = info.GetAccessControl();
 
             directory.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
-            directory.Attributes = Enums.GetMembers<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Name).ToArray();
+            directory.Attributes = EnumUtil.GetNameValue<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Key).ToArray();
 
             return directory;
         }

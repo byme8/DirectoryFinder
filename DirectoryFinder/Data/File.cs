@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using EnumsNET;
+using EnumUtilities;
 
 namespace DirectoryFinder.Data
 {
@@ -27,7 +27,7 @@ namespace DirectoryFinder.Data
             var access = info.GetAccessControl();
 
             file.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
-            file.Attributes = Enums.GetMembers<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Name).ToArray();
+            file.Attributes = EnumUtil.GetNameValue<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Key).ToArray();
 
             return file;
         }
