@@ -75,7 +75,15 @@ namespace DirectoryFinder.Data
 
             var access = info.GetAccessControl();
 
-            directory.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
+            try
+            {
+                directory.Owner = access.GetOwner(typeof(System.Security.Principal.NTAccount)).Value;
+            }
+            catch (Exception)
+            {
+                directory.Owner = "N/A";
+            }
+
             directory.Attributes = EnumUtil.GetNameValue<FileAttributes>().Where(o => (info.Attributes & o.Value) > 0).Select(o => o.Key).ToArray();
             directory.UserRights = new[] { "N/A" };
 
