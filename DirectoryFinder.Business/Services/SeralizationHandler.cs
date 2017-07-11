@@ -7,19 +7,22 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using DirectoryFinder.Data;
 using Microsoft.Win32;
-using DirectoryFinder.Views.ProgresShower;
+using DirectoryFinder.Domain.Services;
+using DirectoryFinder.Domain.Providers;
 
 namespace DirectoryFinder.Services
 {
-    public class SeralizationHandler
+    public class SeralizationHandler : ISeralizationHandler
     {
-        private DirectorySearchHandler searchHandler;
-        private ProgresService progresService;
+        private IDirectorySearchHandler searchHandler;
+        private IProgresNotifier progresNotifier;
+        private ISavePathProvider savePathProvider;
 
-        public SeralizationHandler(DirectorySearchHandler searchHandler, ProgresService progresService)
+        public SeralizationHandler(IDirectorySearchHandler searchHandler, IProgresNotifier progresNotifier, ISavePathProvider savePathProvider)
         {
-            this.progresService = progresService;
+            this.progresNotifier = progresNotifier;
             this.searchHandler = searchHandler;
+            this.savePathProvider = savePathProvider;
         }
 
         public void StartHandeling(CancellationToken token)
@@ -31,28 +34,25 @@ namespace DirectoryFinder.Services
                     this.searchHandler.NewSearchEvent.WaitOne();
                     this.searchHandler.SearchFinishedEvent.WaitOne();
 
-                    var saveFileDialog = new SaveFileDialog()
+                    
+
+                    var path = this.savePathProvider.GetPath();
+                    if (string.IsNullOrWhiteSpace(path))
                     {
-                        Title = "Save results",
-                        AddExtension = true,
-                        Filter ="XML|*.xml"
-                    };
-
-                    var value = saveFileDialog.ShowDialog();
-                    if (!value.HasValue || !value.Value)
                         continue;
+                    }
 
-                    var taskName = string.Format("Saving data to {0}", saveFileDialog.FileName);
-                    this.progresService.Start(taskName);
+                    var taskName = string.Format("Saving data to {0}", path);
+                    this.progresNotifier.Start(taskName);
 
-                    using (var writer = new System.IO.StreamWriter(saveFileDialog.FileName))
+                    using (var writer = new System.IO.StreamWriter(path))
                     {
                         var serializer = new XmlSerializer(typeof(Item), new[] { typeof(Directory), typeof(File)});
                         serializer.Serialize(writer, this.searchHandler.Root);
                         writer.Flush();
                     }
 
-                    this.progresService.Stop(taskName);
+                    this.progresNotifier.Stop(taskName);
                 }
             });
             thread.Start();

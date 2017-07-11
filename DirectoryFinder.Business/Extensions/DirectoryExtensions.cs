@@ -3,53 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Security.AccessControl;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DirectoryFinder.Data
+namespace DirectoryFinder.Business
 {
-    [Serializable]
-    public class Directory : Item
-    {
-        public Directory()
-        {
-            this.Files = new List<File>();
-            this.SubDirectories = new List<Directory>();
-        }
-
-        [OnDeserialized()]
-        internal void OnSerializedMethod(StreamingContext context)
-        {
-            foreach (var item in this.Items)
-            {
-                item.Parent = this;
-            }
-        }
-
-        public List<Directory> SubDirectories
-        {
-            get;
-            set;
-        }
-
-        public List<File> Files
-        {
-            get;
-            set;
-        }
-
-        public override Item[] Items
-        {
-            get
-            {
-                if (this.SubDirectories == null)
-                    return this.Files.ToArray();
-
-                return this.SubDirectories.Cast<Item>().Union(this.Files).ToArray();
-            }
-        }
-    }
-
     public static class DirectoryExtensions
     {
         /// <summary>
@@ -62,9 +21,9 @@ namespace DirectoryFinder.Data
         /// It can't be merged with <see cref="FileExtensions.ToFile"/>, 
         /// because <see cref="DirectoryInfo"/> and <see cref="FileInfo"/> have different hierarchy.
         /// </remarks>
-        public static Directory ToDirectory(this DirectoryInfo info, Directory parent = null)
+        public static Data.Directory ToDirectory(this DirectoryInfo info, Data.Directory parent = null)
         {
-            var directory = new Directory
+            var directory = new Data.Directory
             {
                 Name = info.FullName,
                 Parent = parent,

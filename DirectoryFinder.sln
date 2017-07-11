@@ -1,7 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder", "DirectoryFinder\DirectoryFinder.csproj", "{577BF76E-5D51-4D89-A808-8361321C2333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder.WPF", "DirectoryFinder\DirectoryFinder.WPF.csproj", "{577BF76E-5D51-4D89-A808-8361321C2333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder.Domain", "DirectoryFinder.Domain\DirectoryFinder.Domain.csproj", "{93EA9609-0D2A-4AB2-B8E5-162887EBF1D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder.IoC", "DirectoryFinder.IoC\DirectoryFinder.IoC.csproj", "{8A95BF38-02D9-4F84-AEF1-D33C5DFDBECC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder.Business", "DirectoryFinder.Business\DirectoryFinder.Business.csproj", "{CCF62846-98A3-47CE-BEA3-3F7C41360713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryFinder.ViewModels", "DirectoryFinder.ViewModel\DirectoryFinder.ViewModels.csproj", "{DA998FB0-E8A6-4F67-9C54-D0D4DC9CA43B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +21,22 @@ Global
 		{577BF76E-5D51-4D89-A808-8361321C2333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{577BF76E-5D51-4D89-A808-8361321C2333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{577BF76E-5D51-4D89-A808-8361321C2333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93EA9609-0D2A-4AB2-B8E5-162887EBF1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93EA9609-0D2A-4AB2-B8E5-162887EBF1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93EA9609-0D2A-4AB2-B8E5-162887EBF1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93EA9609-0D2A-4AB2-B8E5-162887EBF1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A95BF38-02D9-4F84-AEF1-D33C5DFDBECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A95BF38-02D9-4F84-AEF1-D33C5DFDBECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A95BF38-02D9-4F84-AEF1-D33C5DFDBECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A95BF38-02D9-4F84-AEF1-D33C5DFDBECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCF62846-98A3-47CE-BEA3-3F7C41360713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF62846-98A3-47CE-BEA3-3F7C41360713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF62846-98A3-47CE-BEA3-3F7C41360713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF62846-98A3-47CE-BEA3-3F7C41360713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA998FB0-E8A6-4F67-9C54-D0D4DC9CA43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA998FB0-E8A6-4F67-9C54-D0D4DC9CA43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA998FB0-E8A6-4F67-9C54-D0D4DC9CA43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA998FB0-E8A6-4F67-9C54-D0D4DC9CA43B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

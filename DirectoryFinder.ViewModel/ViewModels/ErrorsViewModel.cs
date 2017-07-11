@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using DirectoryFinder.Core.ViewModels;
 using DirectoryFinder.Services;
 using ReactiveUI;
+using DirectoryFinder.Domain.Services;
 
 namespace DirectoryFinder.ViewModels
 {
     public class ErrorsViewModel : ViewModel
     {
-        public ErrorsViewModel(DirectorySearchHandler searchHandler)
+        public ErrorsViewModel(IDirectorySearchHandler searchHandler)
         {
             this.Errors = new ObservableCollection<string>();
             searchHandler.Error.ObserveOn(RxApp.MainThreadScheduler).Subscribe(o => this.Errors.Add(o));

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DryIoc;
+using DirectoryFinder.ViewModels;
 
 namespace DirectoryFinder.Views.ProgresShower
 {
@@ -24,7 +25,7 @@ namespace DirectoryFinder.Views.ProgresShower
         public ProgresShower()
         {
             InitializeComponent();
-            this.DataContext = IoC.Container.Resolve<ProgresShowerViewModel>();
+            this.DataContext = IoC.Container.Resolve<ProgresNotifierViewModel>();
         }
     }
 }

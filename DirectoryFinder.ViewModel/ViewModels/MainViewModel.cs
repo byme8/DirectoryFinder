@@ -1,26 +1,27 @@
 ﻿using System.Reactive;
 using System.Threading;
-using System.Windows.Forms;
 using DirectoryFinder.Core.ViewModels;
 using DirectoryFinder.Services;
 using ReactiveUI;
+using DirectoryFinder.Domain.Services;
+using DirectoryFinder.Domain.Providers;
 
 namespace DirectoryFinder.ViewModels
 {
     public class MainViewModel : ViewModel
     {
-        public MainViewModel(DirectorySearchHandler finder)
+        public MainViewModel(IDirectorySearchHandler handler, IFolderPathProvider folderPathProvider)
         {
             this.StartSearch = ReactiveCommand.Create(() =>
             {
-                using (var folderBrowserDialog = new FolderBrowserDialog())
+                var path = folderPathProvider.GetPath();
+                if (string.IsNullOrWhiteSpace(path))
                 {
-                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        this.CancellationTokenSource = new CancellationTokenSource();
-                        finder.StartHandler(folderBrowserDialog.SelectedPath, this.CancellationTokenSource.Token);
-                    }
+                    return;
                 }
+
+                this.CancellationTokenSource = new CancellationTokenSource();
+                handler.StartHandler(path, this.CancellationTokenSource.Token);
             });
 
             this.StopSearch = ReactiveCommand.Create(() =>

@@ -1,7 +1,10 @@
 ﻿using System.Threading;
 using System.Windows;
-using DirectoryFinder.Services;
 using DryIoc;
+using DirectoryFinder.Domain.Services;
+using DirectoryFinder.Domain.Providers;
+using DirectoryFinder.Providers;
+using DirectoryFinder.Services;
 
 namespace DirectoryFinder
 {
@@ -15,9 +18,22 @@ namespace DirectoryFinder
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            this.RegisterProviders();
+            this.StartHandeling();
+        }
+
+        private void RegisterProviders()
+        {
+            IoC.Container.Register<IProgresNotifier, ProgresNotifier>(Reuse.Singleton);
+            IoC.Container.Register<IFolderPathProvider, FolderPathProvider>(Reuse.Singleton);
+            IoC.Container.Register<ISavePathProvider, SavePathProvider>(Reuse.Singleton);
+        }
+
+        private void StartHandeling()
+        {
             this.applicationFinished = new CancellationTokenSource();
-            IoC.Container.Resolve<UIHandler>().StartHandeling(applicationFinished.Token);
-            IoC.Container.Resolve<SeralizationHandler>().StartHandeling(applicationFinished.Token);
+            IoC.Container.Resolve<IUIHandler>().StartHandeling(applicationFinished.Token);
+            IoC.Container.Resolve<ISeralizationHandler>().StartHandeling(applicationFinished.Token);
         }
 
         protected override void OnExit(ExitEventArgs e)

@@ -1,24 +1,24 @@
-﻿using System;
+﻿using DirectoryFinder.Business;
+using DirectoryFinder.Domain.Services;
+using System;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
-using DirectoryFinder.Data;
-using MaterialDesignThemes.Wpf;
-using DirectoryFinder.Views.ProgresShower;
 
 namespace DirectoryFinder.Services
 {
-    public class DirectorySearchHandler
+    public class DirectorySearchHandler : IDirectorySearchHandler
     {
         private Subject<string> error;
-        private ProgresService progressService;
+        private IProgresNotifier progresNotifier;
 
         public IObservable<string> Error
         {
             get
             {
-                return this.error;
+                return this.error.AsObservable();
             }
         }
 
@@ -40,12 +40,12 @@ namespace DirectoryFinder.Services
             private set;
         }
 
-        public DirectorySearchHandler(ProgresService progressService)
+        public DirectorySearchHandler(IProgresNotifier progresNotifier)
         {
             this.NewSearchEvent = new ManualResetEvent(false);
             this.SearchFinishedEvent = new ManualResetEvent(false);
             this.error = new Subject<string>();
-            this.progressService = progressService;
+            this.progresNotifier = progresNotifier;
         }
 
         public void StartHandler(string path, CancellationToken token)
@@ -56,9 +56,9 @@ namespace DirectoryFinder.Services
                 this.SearchFinishedEvent.Reset();
                 this.NewSearchEvent.Set();
 
-                this.progressService.Start(taskName);
+                this.progresNotifier.Start(taskName);
                 this.Root = this.SearchDirectoryInternal(new DirectoryInfo(path), token);
-                this.progressService.Stop(taskName);
+                this.progresNotifier.Stop(taskName);
 
                 this.NewSearchEvent.Reset();
                 this.SearchFinishedEvent.Set();

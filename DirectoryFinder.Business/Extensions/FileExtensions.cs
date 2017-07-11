@@ -1,16 +1,14 @@
-﻿using System;
+﻿using EnumUtilities;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using EnumUtilities;
 using System.Security.AccessControl;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DirectoryFinder.Data
+namespace DirectoryFinder.Business
 {
-    [Serializable]
-    public class File : Item
-    {
-    }
-
     public static class FileExtensions
     {
         /// <summary>
@@ -23,9 +21,9 @@ namespace DirectoryFinder.Data
         /// It can't be merged with <see cref="DirectoryExtensions.ToDirectory"/>, 
         /// because <see cref="DirectoryInfo"/> and <see cref="FileInfo"/> have different hierarchy.
         /// </remarks>
-        public static File ToFile(this FileInfo info, Directory parent)
+        public static Data.File ToFile(this FileInfo info, Data.Directory parent)
         {
-            var file = new File
+            var file = new Data.File
             {
                 Name = info.FullName,
                 Parent = parent,
