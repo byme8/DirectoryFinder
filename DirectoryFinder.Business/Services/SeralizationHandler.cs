@@ -34,17 +34,15 @@ namespace DirectoryFinder.Services
                         continue;
                     }
 
-                    var taskName = string.Format("Saving data to {0}", path);
-                    this.progresNotifier.Start(taskName);
-
-                    using (var writer = new System.IO.StreamWriter(path))
+                    this.progresNotifier.StartTask(string.Format("Saving data to {0}", path), () =>
                     {
-                        var serializer = new XmlSerializer(typeof(Item), new[] { typeof(Directory), typeof(File) });
-                        serializer.Serialize(writer, this.searchHandler.Root);
-                        writer.Flush();
-                    }
-
-                    this.progresNotifier.Stop(taskName);
+                        using (var writer = new System.IO.StreamWriter(path))
+                        {
+                            var serializer = new XmlSerializer(typeof(Item), new[] { typeof(Directory), typeof(File) });
+                            serializer.Serialize(writer, this.searchHandler.Root);
+                            writer.Flush();
+                        }
+                    });
                 }
             });
             thread.Start();

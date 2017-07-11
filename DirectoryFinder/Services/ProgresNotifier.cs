@@ -16,18 +16,23 @@ namespace DirectoryFinder.Services
             this.subject = new Subject<IEnumerable<string>>();
         }
 
-        public void Start(string task)
+        public void StartTask(string description, Action task)
         {
-            this.tasks.Add(task);
-            this.subject.OnNext(tasks);
-        }
+            lock (this.tasks)
+            {
+                this.tasks.Add(description);
+                this.subject.OnNext(this.tasks.ToArray());
+            }
 
-        public void Stop(string task)
-        {
-            this.tasks.Remove(task);
-            this.subject.OnNext(tasks);
+            task();
+           
+            lock (this.tasks)
+            {
+                this.tasks.Remove(description);
+                this.subject.OnNext(this.tasks.ToArray());
+            }
         }
-
+    
         public IDisposable Subscribe(IObserver<IEnumerable<string>> observer)
         {
             return this.subject.Subscribe(observer);

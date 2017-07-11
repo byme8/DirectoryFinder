@@ -52,13 +52,14 @@ namespace DirectoryFinder.Services
         {
             new Thread(() =>
             {
-                var taskName = string.Format("Searching at {0} directory...", path);
                 this.SearchFinishedEvent.Reset();
                 this.NewSearchEvent.Set();
 
-                this.progresNotifier.Start(taskName);
-                this.Root = this.SearchDirectoryInternal(new DirectoryInfo(path), token);
-                this.progresNotifier.Stop(taskName);
+                var taskDescription = string.Format("Searching at {0} directory...", path);
+                this.progresNotifier.StartTask(taskDescription, () =>
+                {
+                    this.Root = this.SearchDirectoryInternal(new DirectoryInfo(path), token);
+                });
 
                 this.NewSearchEvent.Reset();
                 this.SearchFinishedEvent.Set();

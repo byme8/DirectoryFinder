@@ -5,8 +5,6 @@ namespace DirectoryFinder.Domain.Services
 {
     public interface IProgresNotifier : IObservable<IEnumerable<string>>
     {
-        void Start(string task);
-
-        void Stop(string task);
+        void StartTask(string description, Action task);
     }
 }
