@@ -1,11 +1,7 @@
-﻿using DirectoryFinder.Domain.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reactive.Subjects;
+using DirectoryFinder.Domain.Services;
 
 namespace DirectoryFinder.Services
 {
@@ -13,7 +9,7 @@ namespace DirectoryFinder.Services
     {
         private List<string> tasks;
         private Subject<IEnumerable<string>> subject;
-        
+
         public ProgresNotifier()
         {
             this.tasks = new List<string>();

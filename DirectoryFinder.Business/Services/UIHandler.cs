@@ -1,10 +1,9 @@
-﻿using System.Threading;
-using System.Windows;
-using System;
-using DirectoryFinder.Data;
-using System.Reactive.Subjects;
-using DirectoryFinder.Domain.Services;
+﻿using System;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Threading;
+using DirectoryFinder.Data;
+using DirectoryFinder.Domain.Services;
 
 namespace DirectoryFinder.Services
 {

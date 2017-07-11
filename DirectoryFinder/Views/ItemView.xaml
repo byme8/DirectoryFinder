@@ -1,43 +1,43 @@
 ﻿<UserControl x:Class="DirectoryFinder.Views.ItemView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:DirectoryFinder.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Creation date"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Modification date"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Last access date"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Attribues"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Size"/>
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="Owner"/>
-        <TextBlock Grid.Row="7" Grid.Column="0" Text="Current Rights"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Creation date" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Modification date" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Last access date" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Attribues" />
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Size" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Owner" />
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Current Rights" />
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Value.Name}"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Value.CreationDate}"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Value.ModificationDate}"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Value.LastAccessDate}"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Attributes}"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ReadableSize}"/>
-        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding Value.Owner}"/>
-        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Rights}"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Value.Name}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Value.CreationDate}" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Value.ModificationDate}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Value.LastAccessDate}" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Attributes}" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding ReadableSize}" />
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding Value.Owner}" />
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Rights}" />
     </Grid>
 </UserControl>

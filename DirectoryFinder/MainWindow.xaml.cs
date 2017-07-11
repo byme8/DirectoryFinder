@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using DirectoryFinder.Views;
-using DryIoc;
-using MaterialDesignThemes.Wpf;
 
 namespace DirectoryFinder
 {

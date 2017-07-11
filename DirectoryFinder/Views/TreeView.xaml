@@ -10,22 +10,22 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TreeView Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type data:Item}" ItemsSource="{Binding Items}">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="5" Text="{Binding Value.Name}"/>
-                        <TextBlock Margin="5" Text="{Binding ReadableSize}"/>
+                        <TextBlock Margin="5" Text="{Binding Value.Name}" />
+                        <TextBlock Margin="5" Text="{Binding ReadableSize}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
         <StackPanel Grid.Column="1">
             <TextBlock Text="Selected  item" FontSize="24" />
-            <views:ItemView DataContext="{Binding SelectedItem}"/>
+            <views:ItemView DataContext="{Binding SelectedItem}" />
         </StackPanel>
     </Grid>
 </UserControl>

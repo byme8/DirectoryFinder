@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Windows;
-using DryIoc;
-using DirectoryFinder.Domain.Services;
 using DirectoryFinder.Domain.Providers;
+using DirectoryFinder.Domain.Services;
 using DirectoryFinder.Providers;
 using DirectoryFinder.Services;
+using DryIoc;
 
 namespace DirectoryFinder
 {

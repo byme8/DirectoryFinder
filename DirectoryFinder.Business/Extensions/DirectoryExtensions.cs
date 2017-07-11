@@ -1,11 +1,8 @@
-﻿using EnumUtilities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+using EnumUtilities;
 
 namespace DirectoryFinder.Business
 {
@@ -18,7 +15,7 @@ namespace DirectoryFinder.Business
         /// <param name="parent">The parent</param>
         /// <returns>The result directory.</returns>
         /// <remarks>
-        /// It can't be merged with <see cref="FileExtensions.ToFile"/>, 
+        /// It can't be merged with <see cref="FileExtensions.ToFile"/>,
         /// because <see cref="DirectoryInfo"/> and <see cref="FileInfo"/> have different hierarchy.
         /// </remarks>
         public static Data.Directory ToDirectory(this DirectoryInfo info, Data.Directory parent = null)

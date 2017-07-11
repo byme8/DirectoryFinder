@@ -1,10 +1,9 @@
 ﻿using System.Reactive;
 using System.Threading;
 using DirectoryFinder.Core.ViewModels;
-using DirectoryFinder.Services;
-using ReactiveUI;
-using DirectoryFinder.Domain.Services;
 using DirectoryFinder.Domain.Providers;
+using DirectoryFinder.Domain.Services;
+using ReactiveUI;
 
 namespace DirectoryFinder.ViewModels
 {
@@ -28,7 +27,7 @@ namespace DirectoryFinder.ViewModels
             {
                 if (this.CancellationTokenSource == null || this.CancellationTokenSource.IsCancellationRequested)
                     return;
-                
+
                 this.CancellationTokenSource.Cancel();
             });
         }

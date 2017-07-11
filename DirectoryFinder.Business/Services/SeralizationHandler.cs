@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Xml.Serialization;
 using DirectoryFinder.Data;
-using Microsoft.Win32;
-using DirectoryFinder.Domain.Services;
 using DirectoryFinder.Domain.Providers;
+using DirectoryFinder.Domain.Services;
 
 namespace DirectoryFinder.Services
 {
@@ -34,8 +28,6 @@ namespace DirectoryFinder.Services
                     this.searchHandler.NewSearchEvent.WaitOne();
                     this.searchHandler.SearchFinishedEvent.WaitOne();
 
-                    
-
                     var path = this.savePathProvider.GetPath();
                     if (string.IsNullOrWhiteSpace(path))
                     {
@@ -47,7 +39,7 @@ namespace DirectoryFinder.Services
 
                     using (var writer = new System.IO.StreamWriter(path))
                     {
-                        var serializer = new XmlSerializer(typeof(Item), new[] { typeof(Directory), typeof(File)});
+                        var serializer = new XmlSerializer(typeof(Item), new[] { typeof(Directory), typeof(File) });
                         serializer.Serialize(writer, this.searchHandler.Root);
                         writer.Flush();
                     }

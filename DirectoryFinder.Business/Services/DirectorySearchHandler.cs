@@ -1,11 +1,11 @@
-﻿using DirectoryFinder.Business;
-using DirectoryFinder.Domain.Services;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading;
+using DirectoryFinder.Business;
+using DirectoryFinder.Domain.Services;
 
 namespace DirectoryFinder.Services
 {

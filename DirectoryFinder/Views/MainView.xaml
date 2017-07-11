@@ -17,11 +17,11 @@
             <TabItem Header="Files">
                 <Grid>
                     <local:TreeView />
-                    <progres:ProgresShower VerticalAlignment="Bottom"/>
+                    <progres:ProgresShower VerticalAlignment="Bottom" />
                 </Grid>
             </TabItem>
             <TabItem Header="Errors">
-                <local:ErrorsView/>
+                <local:ErrorsView />
             </TabItem>
         </TabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">

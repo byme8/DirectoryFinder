@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 using DirectoryFinder.Core.ViewModels;
 using DirectoryFinder.Domain.Services;
 using ReactiveUI;
-using System;
-using System.Reactive;
-using System.Reactive.Linq;
 
 namespace DirectoryFinder.ViewModels
 {
